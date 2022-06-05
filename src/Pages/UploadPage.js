@@ -5,8 +5,22 @@ const UploadPage = () => {
 
     const { register,reset, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        
-        console.log(data);
+            const url = `http://localhost:5000/info-add`
+        //    const url = `https://peaceful-shore-76688.herokuapp.com/review`
+           console.log(url);
+           fetch(url, {
+               method:'POST',
+               headers: {
+                   'content-type':'application/json'
+               },
+               body:JSON.stringify(data)
+           })
+           .then(res =>res.json())
+           .then(result =>{
+               console.log(result);
+               reset()
+           })
+       
         reset()
         }
   
